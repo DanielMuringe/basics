@@ -7,14 +7,22 @@ class crudTable():
 '''
 The class allows manipulation af an slqite3 table as a sole entity
 '''
-    def __init__(self,dbPath):
+    def __init__(self,dbPath,tableName):
         with sqlite3_connect(dbPath) as db:
             self.dbCursor = db.cursor()
+            self.name = tableName
+#   Check if table exists to create it.
+            self.dbCursor.execute('SELECT ')
+
+
 
     class create():
-        def table(self,name,fieldList):
-            self.dbCursor.execute(f'''CREATE TABLE {name}(  {'?,'*len(fieldList)[:-1]}  );''', fieldList)
-        def record(self,)
+        def __init__(self,fieldlist):
+            self.fieldlist = fieldlist
+        def table(self,):
+            self.dbCursor.execute(f'''CREATE TABLE IF NOT EXISTS{name}(  {'?,'*len(self.fieldList)[:-1]}  );''', self.fieldList)
+        def records(self,):
+
 
         
 '''
@@ -39,5 +47,8 @@ def csvToDb(csvPath,dbTable):
         main = map(lambda line: line[-1] = line[-1].replace('\n',''),main)
     
     dbTable.create.records(main)
+
+def table_exists(tablename,connection):
+    
     
     
