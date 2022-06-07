@@ -1,0 +1,1 @@
+This is simply a repository of frequently used operations in python.
