@@ -11,32 +11,29 @@ The class allows manipulation af an slqite3 table as a sole entity
         with sqlite3_connect(dbPath) as db:
             self.dbCursor = db.cursor()
             self.name = tableName
-#   Check if table exists to create it.
-            self.dbCursor.execute('SELECT ')
+
+        class create(crudTable):
+            def __init__(self,fieldlist):
+                self.fieldlist = fieldlist
+            def table(self,):
+                self.dbCursor.execute(f'''CREATE TABLE IF NOT EXISTS{name}(  {'?,'*len(self.fieldList)[:-1]}  );''', self.fieldList)
+            def records(self,):
+                pass
 
 
-
-    class create():
-        def __init__(self,fieldlist):
-            self.fieldlist = fieldlist
-        def table(self,):
-            self.dbCursor.execute(f'''CREATE TABLE IF NOT EXISTS{name}(  {'?,'*len(self.fieldList)[:-1]}  );''', self.fieldList)
-        def records(self,):
-
-
-        
+    
 '''
 create: 
-    tables  
-    records  
+tables  
+records  
 
 '''
-        pass
-    class read():
-        pass
-    class update():
-        pass
-    class delete():
+    pass
+class read():
+    pass
+class update():
+    pass
+class delete():
         pass
 
 def csvToDb(csvPath,dbTable):
@@ -48,7 +45,5 @@ def csvToDb(csvPath,dbTable):
     
     dbTable.create.records(main)
 
-def table_exists(tablename,connection):
-    
-    
-    
+def table_exists(tablename,cursor_execute):
+    cursor_execute(f"SELECT {tablename} FROM sqlite3_master WHERE type='table' AND name='{tablename}'")
